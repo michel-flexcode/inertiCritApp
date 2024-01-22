@@ -14,16 +14,10 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('item_id');
-            $table->string('item_type');
+            $table->morphs('item');
             $table->text('comment');
             $table->integer('rating');
             $table->foreign('user_id')->references('id')->on('users');
-            // Remplacez 'movies', 'series', 'albums', 'books' par le nom réel de chaque table d'éléments
-            $table->foreign('item_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('series')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('albums')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('books')->onDelete('cascade');
             $table->timestamps();
         });
     }
