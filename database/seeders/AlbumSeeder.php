@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\AlbumFactory;
+use App\Models\Album;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,8 @@ class AlbumSeeder extends Seeder
      */
     public function run(): void
     {
-        AlbumFactory::factory()->count(50)->create();
+        Album::factory()
+            ->count(50)
+            ->create();
     }
 }
