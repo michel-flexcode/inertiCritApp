@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title'];
+
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'item');
+    }
 }
