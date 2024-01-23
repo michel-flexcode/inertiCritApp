@@ -1,3 +1,9 @@
+<script setup>
+import MediaCard from "../Components/MediaCard.vue";
+
+const props = defineProps(["reviews"]);
+</script>
+
 <template>
     <div>
         <h1>Dernières Critiques</h1>
@@ -18,9 +24,3 @@
         <p>aaaaaaa</p>
     </div>
 </template>
-
-<script setup>
-import MediaCard from "../Components/MediaCard.vue";
-
-const props = defineProps(["reviews"]);
-</script>
