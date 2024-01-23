@@ -2,44 +2,25 @@
     <div>
         <h1>Dernières Critiques</h1>
 
-        <div v-if="reviews.length === 0">
-            <p>Aucune critique disponible pour le moment.</p>
+        <div class="flex flex-col space-y-4 mt-5">
+            <p v-if="reviews.length === 0">
+                Aucune critique disponible pour le moment.
+            </p>
+
+            <MediaCard
+                v-else
+                v-for="review in reviews"
+                :key="review.id"
+                :review="review"
+            />
         </div>
 
-        <div v-else>
-            <div v-for="review in reviews" :key="review.id">
-                <MediaCard :media="review.media" :review="review" />
-            </div>
-        </div>
+        <p>aaaaaaa</p>
     </div>
 </template>
 
-<script>
-import MediaCard from "@/components/MediaCard.vue";
+<script setup>
+import MediaCard from "../Components/MediaCard.vue";
 
-export default {
-    components: {
-        MediaCard,
-    },
-    data() {
-        return {
-            reviews: [],
-        };
-    },
-    mounted() {
-        // Chargez les dernières critiques depuis votre API ici
-        // Utilisez Inertia pour faire une requête à votre backend Laravel
-        this.$inertia
-            .get("/api/reviews/latest")
-            .then((response) => {
-                this.reviews = response.data;
-            })
-            .catch((error) => {
-                console.error(
-                    "Erreur lors de la récupération des critiques :",
-                    error
-                );
-            });
-    },
-};
+const props = defineProps(["reviews"]);
 </script>
