@@ -1,9 +1,3 @@
-<script setup>
-import MediaCard from "../Components/MediaCard.vue";
-
-const props = defineProps(["reviews"]);
-</script>
-
 <template>
     <div>
         <h1>Dernières Critiques</h1>
@@ -13,14 +7,30 @@ const props = defineProps(["reviews"]);
                 Aucune critique disponible pour le moment.
             </p>
 
-            <MediaCard
-                v-else
-                v-for="review in reviews"
-                :key="review.id"
-                :review="review"
-            />
+            <p v-else>
+                <MediaCard
+                    v-for="review in reviews"
+                    :key="review.id"
+                    :review="review"
+                />
+            </p>
         </div>
-
-        <p>aaaaaaa</p>
     </div>
 </template>
+
+<script setup>
+// import MediaCard from "@/components/MediaCard.vue";
+import { defineProps } from "vue";
+
+// Mock data for testing
+const reviews = [
+    {
+        id: 1,
+        media: { title: "Test Media" },
+        comment: "This is a test comment.",
+        rating: 9,
+    },
+    // Add more mock reviews if needed
+];
+const props = defineProps(["reviews"]);
+</script>
